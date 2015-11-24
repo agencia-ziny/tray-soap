@@ -2,9 +2,9 @@
 
 namespace Aguimaraes\TraySoap;
 
-use BeSimple\SoapClientBuilder;
+use BeSimple\SoapClient\SoapClientBuilder;
 
-class SoapClient extends BeSimple\SoapClientBuilder
+class SoapClient extends SoapClientBuilder
 {
 
 }
