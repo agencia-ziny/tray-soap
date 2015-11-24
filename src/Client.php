@@ -49,14 +49,13 @@ class Client
             ->withExceptions()
             ->withSoapVersion11()
             ->withWsdl($this->wsdl);
-
         $this->soapClient = $builder->build();
         return $this;
     }
     /**
      * @param integer
      */
-    public function setShotId($shopId)
+    public function setShopId($shopId)
     {
         $this->shopId = $shopId;
         return $this;
