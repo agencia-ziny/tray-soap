@@ -40,7 +40,7 @@ class Client
      * SoapClient instance
      * @var BeSimple\SoapClient\SoapClient
      */
-    private $soapClient = null;
+    protected $soapClient = null;
 
     public function __construct()
     {
