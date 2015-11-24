@@ -17,18 +17,18 @@ class Client
      * Id da loja na Tray
      * @var null
      */
-    private $shopId = null;
+    protected $shopId = null;
 
     /**
      * Login do WS da loja na Tray
      * @var null
      */
-    private $login = null;
+    protected $login = null;
     /**
      * Password do WS da loja na Tray
      * @var null
      */
-    private $pwd = null;
+    protected $pwd = null;
 
     /**
      * Web Service URL
@@ -50,6 +50,30 @@ class Client
             ->withWsdl($this->wsdl);
 
         $this->soapClient = $builder->build();
+        return $this;
+    }
+    /**
+     * @param integer
+     */
+    public function setShotId($shopId)
+    {
+        $this->shopId = $shopId;
+        return $this;
+    }
+    /**
+     * @param string
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+        return $this;
+    }
+    /**
+     * @param string
+     */
+    public function setPwd($pwd)
+    {
+        $this->pwd = $pwd;
         return $this;
     }
 }
