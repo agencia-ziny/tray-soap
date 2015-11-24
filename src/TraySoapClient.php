@@ -1,6 +1,6 @@
 <?php
 
-namespace Guimaraes\TraySoap\SoapClient;
+namespace Aguimaraes\TraySoap\SoapClient;
 
 use BeSimple\SoapClient as BeSimpleSoapClient;
 
