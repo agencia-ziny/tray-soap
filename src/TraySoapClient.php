@@ -1,10 +1,8 @@
 <?php
 
-namespace Aguimaraes\TraySoap\SoapClient;
+namespace Aguimaraes\TraySoap;
 
-use BeSimple\SoapClient as BeSimpleSoapClient;
-
-class SoapClient extends BeSimpleSoapClient
+class SoapClient extends BeSimple\SoapClientBuilder
 {
-    
+
 }
