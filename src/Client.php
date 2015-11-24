@@ -47,6 +47,7 @@ class Client
         $builder = SoapClientBuilder::createWithDefaults()
             ->withTrace()
             ->withExceptions()
+            ->withSoapVersion11()
             ->withWsdl($this->wsdl);
 
         $this->soapClient = $builder->build();
