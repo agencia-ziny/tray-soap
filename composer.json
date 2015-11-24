@@ -15,5 +15,10 @@
     },
     "require": {
         "besimple/soap-client": "^0.2.6"
+    },
+    "autoload": {
+        "psr-0": {
+            "Aguimaraes": "src/"
+        }
     }
 }
