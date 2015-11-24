@@ -36,6 +36,12 @@ class Client
      */
     private $url = null;
 
+    /**
+     * SoapClient instance
+     * @var BeSimple\SoapClient\SoapClient
+     */
+    private $soapClient = null;
+
     public function __construct()
     {
         $builder = SoapClientBuilder::createWithDefaults()
@@ -43,6 +49,7 @@ class Client
             ->withExceptions()
             ->withWsdl($this->wsdl);
 
-        return $builder->build();
+        $this->soapClient = $builder->build();
+        return $this;
     }
 }
