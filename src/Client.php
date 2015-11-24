@@ -31,26 +31,24 @@ class Client
     protected $pwd = null;
 
     /**
-     * Web Service URL
-     * @var string
-     */
-    private $url = null;
-
-    /**
      * SoapClient instance
-     * @var BeSimple\SoapClient\SoapClient
+     * @var \BeSimple\SoapClient\SoapClient
      */
     protected $soapClient = null;
 
     public function __construct()
     {
+        if (function_exists('env')) {
+            $this->setShopId(env('TRAY_SHOPID'));
+            $this->setLogin(env('TRAY_LOGIN'));
+            $this->setPwd(env('TRAY_PWD'));
+        }
         $builder = SoapClientBuilder::createWithDefaults()
             ->withTrace()
             ->withExceptions()
             ->withSoapVersion11()
             ->withWsdl($this->wsdl);
         $this->soapClient = $builder->build();
-        return $this;
     }
     /**
      * @param integer
@@ -75,5 +73,13 @@ class Client
     {
         $this->pwd = $pwd;
         return $this;
+    }
+
+    public function __soapCall($function, $arguments)
+    {
+        if (empty($this->shopId) || empty($this->login) || empty($this->pwd)) {
+            throw new \Exception('Missing auth params');
+        }
+        return parent::__soapCall($function, $arguments);
     }
 }
