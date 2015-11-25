@@ -4,9 +4,9 @@ namespace Aguimaraes\TraySoap;
 
 use BeSimple\SoapClient\SoapClientBuilder;
 
-class Client
+abstract class Client
 {
-    
+
     use ClientTrait;
 
     /**
