@@ -76,8 +76,13 @@ abstract class Client
         $this->pwd = $pwd;
         return $this;
     }
-
-    public function __soapCall($function, $params)
+    /**
+     * Make a SOAP CALL with default auth params
+     * @param  string $function
+     * @param  array $params
+     * @return array
+     */
+    public function __soapCall($function, array $params)
     {
         if (empty($this->shopId) || empty($this->login) || empty($this->pwd)) {
             throw new \Exception('Missing auth params');
