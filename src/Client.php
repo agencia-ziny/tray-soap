@@ -75,11 +75,16 @@ class Client
         return $this;
     }
 
-    public function __soapCall($function, $arguments)
+    public function __soapCall($function, $params)
     {
         if (empty($this->shopId) || empty($this->login) || empty($this->pwd)) {
             throw new \Exception('Missing auth params');
         }
-        return parent::__soapCall($function, $arguments);
+        $authParams = array(
+            'pid_loja' => $this->shopId,
+            'plogin' => $this->login,
+            'psenha' => $this->pwd
+        );
+        return parent::__soapCall($function, $authParams + $params);
     }
 }
