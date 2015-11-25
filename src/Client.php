@@ -6,6 +6,8 @@ use BeSimple\SoapClient\SoapClientBuilder;
 
 class Client
 {
+    
+    use ClientTrait;
 
     /**
      * WSDL URL
