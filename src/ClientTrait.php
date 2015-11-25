@@ -39,7 +39,12 @@ trait ClientTrait
             'hora_final' => '2359'
         ));
     }
-
+    /**
+     * Get from specific date and time
+     * @param  DateTime      $fromDate
+     * @param  DateTime|null $toDate
+     * @return array
+     */
     public function getFromSpecificDateAndTime(DateTime $fromDate, DateTime $toDate = null)
     {
         return $this->get(array(
