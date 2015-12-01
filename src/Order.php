@@ -6,6 +6,6 @@ class Order extends Client
 {
     public function get(array $params)
     {
-        return $this->soapClient->__soapCall('fWSImportaPedidos', $params);
+        return $this->call('fWSImportaPedidos', $params);
     }
 }

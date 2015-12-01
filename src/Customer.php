@@ -6,6 +6,6 @@ class Customer extends Client
 {
     public function get(array $params)
     {
-        return $this->soapClient->__soapCall('fWSImportaClientes', $params);
+        return $this->call('fWSImportaClientes', $params);
     }
 }
