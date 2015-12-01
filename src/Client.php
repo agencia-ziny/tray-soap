@@ -13,7 +13,7 @@ abstract class Client
      * WSDL URL
      * @var string
      */
-    private $wsdl = 'http://www.zipautomacao.com.br/webservice/v2/ws_servidor.php?wsdl';
+    private $wsdl = null;
 
     /**
      * Id da loja na Tray
@@ -44,6 +44,7 @@ abstract class Client
             $this->setShopId(env('TRAY_SHOPID'));
             $this->setLogin(env('TRAY_LOGIN'));
             $this->setPwd(env('TRAY_PWD'));
+            $this->setWsdl(env('TRAY_WSDL'));
         }
         $builder = SoapClientBuilder::createWithDefaults()
             ->withTrace()
@@ -51,6 +52,14 @@ abstract class Client
             ->withSoapVersion11()
             ->withWsdl($this->wsdl);
         $this->soapClient = $builder->build();
+    }
+    /**
+     * @param string URL
+     */
+    public function setWsdl($wsdl)
+    {
+        $this->wsdl = $wsdl;
+        return $this;
     }
     /**
      * @param integer
@@ -76,13 +85,8 @@ abstract class Client
         $this->pwd = $pwd;
         return $this;
     }
-    /**
-     * Make a SOAP CALL with default auth params
-     * @param  string $function
-     * @param  array $params
-     * @return array
-     */
-    public function __soapCall($function, array $params)
+
+    protected function call($function, array $params)
     {
         if (empty($this->shopId) || empty($this->login) || empty($this->pwd)) {
             throw new \Exception('Missing auth params');
@@ -92,6 +96,6 @@ abstract class Client
             'plogin' => $this->login,
             'psenha' => $this->pwd
         );
-        return parent::__soapCall($function, $authParams + $params);
+        return $this->soapClient->__soapCall($function, $authParams + $params);
     }
 }
