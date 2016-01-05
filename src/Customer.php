@@ -26,4 +26,15 @@ class Customer extends Client
             ['id_cliente' => $id]
         );
     }
+
+    public function sync($id)
+    {
+        return $this->call(
+            'fWSAtualizaListaToDo',
+            [
+                'entidade' => 'clientes',
+                'id' => $id
+            ]
+        );
+    }
 }
