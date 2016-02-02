@@ -27,6 +27,14 @@ class Customer extends Client
         );
     }
 
+    public function getByEmail($email)
+    {
+        return $this->call(
+            'fWSImportaClientePorEmail',
+            ['email' => $email]
+        );
+    }
+
     public function sync($id)
     {
         return $this->call(
