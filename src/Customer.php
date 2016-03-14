@@ -93,7 +93,7 @@ class Customer extends Client
     {
         $method = sprintf(
             'getBy%s',
-            ucfirst($field)
+            studly_case($field)
         );
 
         if (! method_exists($this, $method)) {

@@ -4,11 +4,30 @@ namespace Aguimaraes\TraySoap;
 
 class Order extends Client
 {
-    public function get($id = null)
+    public function get($value = null, $field = null)
     {
-        return is_numeric($id) ?
-            $this->getById($id) :
-            $this->getAll();
+        /**
+         * If none params were provided then we call
+         * the get all method.
+         */
+        if (! $value && ! $field) {
+            return $this->getAll();
+        }
+
+        /**
+         * If the provided field are equals to tray_id then we call the get by
+         * id method.
+         * @var [type]
+         */
+        if ($field === 'tray_id') {
+            return $this->getById($value);
+        }
+
+        /**
+         * In other case we call the method equivalent to the
+         * provided field if it exists.
+         */
+        return $this->getByScope($value, $field);
     }
 
     public function getAll(array $params = array())
@@ -23,9 +42,7 @@ class Order extends Client
     {
         return $this->call(
             'fWSImportaPedidoPorId',
-            [
-                'id_pedido' => $id
-            ]
+            ['id_cliente' => $id]
         );
     }
 
@@ -38,5 +55,19 @@ class Order extends Client
                 'id' => $id
             ]
         );
+    }
+
+    public function getByScope($value, $field)
+    {
+        $method = sprintf(
+            'getBy%s',
+            studly_case($field)
+        );
+
+        if (! method_exists($this, $method)) {
+            return false;
+        }
+
+        return $this->$method($value);
     }
 }

@@ -7,17 +7,32 @@ class OrderProduct extends Client
     public function get($value = null, $field = null)
     {
         /**
+         * If none params were provided then we call
+         * the get all method.
+         */
+        if (! $value && ! $field) {
+            return $this->getAll();
+        }
+
+        /**
          * Call the method equivalent to the provided field
          * if it exists.
          */
         return $this->getByScope($value, $field);
     }
 
+    public function getAll(array $params = array())
+    {
+        return $this->call(
+            'fWSImportaItensPedidos',
+            $params
+        );
+    }
 
     public function getByOrderId($id)
     {
         return $this->call(
-            'fWSImportaItensPedidosPorId',
+            'fWSImportaItensPedidoPorId',
             ['id_produto' => $id]
         );
     }
@@ -36,4 +51,3 @@ class OrderProduct extends Client
         return $this->$method($value);
     }
 }
-
