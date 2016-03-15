@@ -6,10 +6,28 @@ class Customer extends Client
 {
     public function save(array $item)
     {
-        return $this->call(
+        $save = $this->call(
             'fWSCadastraClienteAvancado',
             $item
         );
+
+        return ($save['status'] == 'ok') ? $this->saveAddress($item) : $save;
+    }
+
+    public function saveAddress(array $arr)
+    {
+        $save = [
+            'id_cliente' => $arr['id_cliente']
+        ];
+        $save['status'] = $this->call(
+            'fWSCadastraContatosCliente',
+            [
+                'id_cliente' => $arr['id_cliente'],
+                'telefone' => $arr['telefone'],
+                'telefone_adicional' => $arr['telefone_adicional']
+            ]
+        );
+        return $save;
     }
 
     public function get($value = null, $field = null)
