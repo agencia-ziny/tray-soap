@@ -4,6 +4,14 @@ namespace Aguimaraes\TraySoap;
 
 class Product extends Client
 {
+    public function save(array $item)
+    {
+        return $this->call(
+            'fWSCadastraProduto',
+            $item
+        );
+    }
+
     public function get($value = null, $field = null)
     {
         /**
@@ -33,7 +41,7 @@ class Product extends Client
     public function getById($id)
     {
         return $this->call(
-            'fWSImportaProdutoPorIDRequest',
+            'fWSImportaProdutoPorID',
             ['id_produto' => $id]
         );
     }
