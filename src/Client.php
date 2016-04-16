@@ -47,6 +47,7 @@ abstract class Client
             $this->setWsdl(env('TRAY_WSDL'));
         }
         $builder = SoapClientBuilder::createWithDefaults()
+            ->withEncoding('ISO-8859-1')
             ->withTrace()
             ->withExceptions()
             ->withSoapVersion11()
