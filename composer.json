@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Aguimaraes": "src"
+            "Aguimaraes": "src/"
         }
     }
 }
