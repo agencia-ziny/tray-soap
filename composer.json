@@ -3,7 +3,7 @@
     "description": "Leverage for Tray Soap WebServices",
     "type": "library",
     "license": "LGPL-3.0+",
-    "minimum-stability": "dev",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "Álvaro Guimarães",
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Aguimaraes": "src/"
+            "Aguimaraes": "src"
         }
     }
 }
