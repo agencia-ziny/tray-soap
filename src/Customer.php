@@ -59,7 +59,7 @@ class Customer extends Client
     public function getAll(array $params = array())
     {
         return $this->call(
-            'fWSCadastraClienteAvancado',
+            'fWSImportaClientesAvancado',
             $params
         );
     }
